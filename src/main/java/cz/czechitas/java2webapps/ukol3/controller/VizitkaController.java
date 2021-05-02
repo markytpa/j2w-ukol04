@@ -98,8 +98,15 @@ public class VizitkaController {
   public ModelAndView detail(int id) {
     ModelAndView result = new ModelAndView("detail");
     result.addObject("vizitka", seznamVizitek.get(id));
+    result.addObject("id", id);
     return result;
   }
+  @PostMapping(value = "/detail", params = {"id"})
+  public String delete(int id) {
+    seznamVizitek.remove(id);
+    return "redirect:/";
+  }
+
   @GetMapping("/nova")
   public ModelAndView nova() {
     ModelAndView result = new ModelAndView("nova");
